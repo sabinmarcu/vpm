@@ -51,7 +51,10 @@ const refreshTsConfigs = async (
   if (!fs.existsSync(baseTsConfig)) {
     fs.writeFileSync(
       baseTsConfig,
-      readJSON(path.resolve(__dirname, '../configs/tsconfig.root.json'))
+      fs.readFileSync(
+        path.resolve(__dirname, '../configs/tsconfig.root.json'),
+        'utf-8'
+      )
     )
   }
   const modulePath = path.resolve(ROOT, location);
