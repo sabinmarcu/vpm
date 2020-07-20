@@ -1,0 +1,24 @@
+{
+  "name": "@nvpm/utils",
+  "version": "1.0.0",
+  "description": "Utils for nvpm",
+  "main": "lib/index.js",
+  "module": "src/index.ts",
+  "author": "Sabin Marcu <sabinmarcu@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:watch": "nodemon -e ts,tsx -x yarn build",
+    "clean": "run-s clean:*",
+    "clean:lib": "rm -rf lib",
+    "clean:cache": "rm -rf tsconfig.build.tsbuildinfo",
+    "prepublish": "yarn build"
+  },
+  "dependencies": {
+    "@nvpm/navigation": "^1.0.0",
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.43"
+  }
+}

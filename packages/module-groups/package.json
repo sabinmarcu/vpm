@@ -1,0 +1,27 @@
+{
+  "name": "@nvpm/module-groups",
+  "version": "1.0.0",
+  "description": "Packages Module for nvpm",
+  "main": "lib/index.js",
+  "module": "src/index.ts",
+  "author": "Sabin Marcu <sabinmarcu@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:watch": "nodemon -e ts,tsx -x yarn build",
+    "clean": "run-s clean:*",
+    "clean:lib": "rm -rf lib",
+    "clean:cache": "rm -rf tsconfig.build.tsbuildinfo",
+    "prepublish": "yarn build"
+  },
+  "dependencies": {
+    "@nvpm/utils": "^1.0.0",
+    "@nvpm/navigation": "^1.0.0",
+    "@types/ink": "^2.0.3",
+    "@types/ink-select-input": "^3.0.0",
+    "@types/react": "^16.9.43",
+    "ink": "^2.7.1",
+    "ink-select-input": "^3.1.2",
+    "react": "^16.13.1"
+  }
+}

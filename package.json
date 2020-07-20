@@ -1,5 +1,6 @@
 {
-  "name": "vim-package-manager",
+  "name": "nvpm",
+  "private": "true",
   "version": "1.0.0",
   "main": "index.js",
   "author": {
@@ -8,23 +9,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@types/ink": "^2.0.3",
-    "@types/ink-select-input": "^3.0.0",
-    "@types/node": "^14.0.23",
-    "@types/react": "^16.9.43",
-    "dts-generator": "^3.0.0",
-    "eslint": "^7.5.0",
-    "ink": "^2.7.1",
-    "ink-big-text": "^1.1.0",
-    "ink-gradient": "^1.0.0",
-    "ink-select-input": "^3.1.2",
-    "react": "^16.13.1",
     "typescript": "^3.9.7"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "tsc",
     "build:dev": "nodemon -w src -e ts,tsx -x yarn build",
-    "postinstall": "yarn build",
     "start": "node lib/index.js",
     "start:dev": "run-p start:dev:*",
     "start:dev:cli": "nodemon -w lib -e js,jsx -x yarn start",
@@ -32,12 +24,13 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.6.1",
-    "dts-gen": "^0.6.0",
+    "eslint": "^7.5.0",
     "eslint-config-airbnb-typescript": "^9.0.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
+    "lerna": "^3.22.1",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "react-devtools": "^4.8.2"
