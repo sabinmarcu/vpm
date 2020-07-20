@@ -2,6 +2,7 @@ import React from 'react';
 import { useInput } from 'ink';
 import { Router, RouterDebug } from '@nvpm/navigation';
 import { Banner } from './Banner';
+import { Version } from './Version';
 
 export const App = () => {
   useInput(
@@ -15,8 +16,12 @@ export const App = () => {
     <>
       <Router root={__dirname}>
         <Banner />
-        {process.env.DEV && process.env.DEV === 'true'
-          && <RouterDebug />}
+        {process.env.DEV && process.env.DEV === 'true' && (
+          <>
+            <Version />
+            <RouterDebug />
+          </>
+        )}
       </Router>
     </>
   );

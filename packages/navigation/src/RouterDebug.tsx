@@ -11,9 +11,10 @@ export const RouterDebug = () => {
         <Text>{route}</Text>
       </Box>
       <Box>
-        <Text>Route History:</Text>
+        <Text>Route History: </Text>
         <Text>{history.join(' > ')}</Text>
       </Box>
+      <Text>   </Text>
     </>
   );
 };

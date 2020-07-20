@@ -21,9 +21,7 @@
   },
   "scripts": {
     "start": "node lib/index.js",
-    "start:dev": "yarn build && run-p start:dev:*",
-    "start:dev:build": "nodemon -e .json -x yarn build:watch",
-    "start:dev:exec": "yarn start",
+    "start:dev": "DEV=true yarn start",
     "build": "tsc -b tsconfig.json",
     "build:watch": "nodemon -e ts,tsx -x yarn build",
     "clean": "run-s clean:*",
