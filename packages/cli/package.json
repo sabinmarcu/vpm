@@ -9,7 +9,7 @@
   "dependencies": {
     "@nvpm/config": "^1.0.0",
     "@nvpm/navigation": "^1.0.0",
-    "@nvpm/module-groups": "^1.0.0",
+    "@nvpm/module-groups": "^1.0.0",    
     "@nvpm/module-home": "^1.0.0",
     "ink": "^2.7.1",
     "ink-big-text": "^1.1.0",
@@ -21,12 +21,14 @@
   },
   "scripts": {
     "start": "node lib/index.js",
-    "start:dev": "yarn build && yarn start",
-    "build": "tsc -b tsconfig.build.json",
+    "start:dev": "yarn build && run-p start:dev:*",
+    "start:dev:build": "nodemon -e .json -x yarn build:watch",
+    "start:dev:exec": "yarn start",
+    "build": "tsc -b tsconfig.json",
     "build:watch": "nodemon -e ts,tsx -x yarn build",
     "clean": "run-s clean:*",
     "clean:lib": "rm -rf lib",
-    "clean:cache": "rm -rf tsconfig.build.tsbuildinfo",
+    "clean:cache": "rm -rf tsconfig.tsbuildinfo",
     "prepublish": "yarn build"
   },
   "devDependencies": {
