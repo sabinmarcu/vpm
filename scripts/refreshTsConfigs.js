@@ -48,6 +48,12 @@ const refreshTsConfigs = async (
     );
   const template = readJSON(path.resolve(__dirname, '../configs/tsconfig.package.json'));
   const baseTsConfig = path.resolve(__dirname, '../tsconfig.json');
+  if (!fs.existsSync(baseTsConfig)) {
+    fs.writeFileSync(
+      baseTsConfig,
+      readJSON(path.resolve(__dirname, '../configs/tsconfig.root.json'))
+    )
+  }
   const modulePath = path.resolve(ROOT, location);
   const paths = workspaceDependencies.map(it => 
     path.relative(

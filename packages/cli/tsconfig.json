@@ -1,1 +1,0 @@
-{"extends":"../../tsconfig.json","compilerOptions":{"outDir":"./lib","rootDir":"./src","composite":true},"include":["src/**/*","../../types/*"],"references":[{"path":"../config/tsconfig.json"},{"path":"../navigation/tsconfig.json"},{"path":"../module-groups/tsconfig.json"},{"path":"../module-home/tsconfig.json"}]}
