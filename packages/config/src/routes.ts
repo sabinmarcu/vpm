@@ -88,11 +88,14 @@ export const getModules = async (rootDir?: string) => {
       prev,
       {
         routes: r,
-        name,
+        routeConfig,
         pkg,
         RootScreen,
       }: {
-        name: string,
+        routeConfig?: {
+          name: string,
+          order: number
+        },
         pkg: string,
         routes: { path: string, root: boolean }[],
         RootScreen: React.FC
@@ -107,7 +110,12 @@ export const getModules = async (rootDir?: string) => {
             { path: pth, root },
           ) => ({
             ...p,
-            [root ? pth : `${rootPath.path}:${pth}`]: { component: RootScreen, root, name: name || pkg },
+            [root ? pth : `${rootPath.path}:${pth}`]: {
+              component: RootScreen,
+              root,
+              name: routeConfig ? routeConfig.name : pkg,
+              order: routeConfig && routeConfig.order,
+            },
           }),
           {},
         ),

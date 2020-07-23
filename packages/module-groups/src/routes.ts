@@ -4,6 +4,9 @@ export const routes = [
   { path: 'b' },
 ];
 
-export const name = 'Package Group Management';
+export const routeConfig = {
+  name: 'Package Group Management',
+  order: 10,
+};
 
 export default routes;

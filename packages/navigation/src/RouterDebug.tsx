@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text } from 'ink';
+import { Box, Text, Color } from 'ink';
 import { useRouter } from './useNavigation';
 
 export const RouterDebug = () => {
@@ -7,11 +7,11 @@ export const RouterDebug = () => {
   return (
     <>
       <Box>
-        <Text>Route: </Text>
+        <Color red>Router:        </Color>
         <Text>{route}</Text>
       </Box>
       <Box>
-        <Text>Route History: </Text>
+        <Color red>Route History: </Color>
         <Text>{history.join(' > ')}</Text>
       </Box>
       <Text>   </Text>

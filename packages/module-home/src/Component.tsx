@@ -9,8 +9,9 @@ export const Home = () => {
   const routes = useRoutes();
   const options = useMemo(
     () => Object.entries(routes)
-      .map(([key, route]) => ({ ...route, key }))
+      .map(([key, route]: [string, any]) => ({ ...route, key }))
       .filter(({ name, root }) => !name.startsWith('@') && root)
+      .sort(({ order: oa }, { order: ob }) => Math.sign((oa || 0) - (ob || 0)))
       .reduce((prev, { key, name }) => ({ ...prev, [key]: name }), {}),
     [routes],
   );
@@ -19,7 +20,7 @@ export const Home = () => {
   useEffect(
     () => {
       if (opts.isDirty && opts.selection in options) {
-        go(opts.selection);
+        go(opts.selection as string);
       }
     },
     [opts.selection, opts.isDirty, go],

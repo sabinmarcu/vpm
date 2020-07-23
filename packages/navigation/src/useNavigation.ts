@@ -6,7 +6,14 @@ import {
   useCallback,
 } from 'react';
 
-export type RoutesType = { [key: string]: { root: boolean, component: React.FC, name: string } };
+export type RoutesType = {
+  [key: string]: {
+    root: boolean,
+    component: React.FC,
+    name: string,
+    order?: number
+  }
+};
 export type RouterContextType = {
   route: string,
   go: (to: string) => void,

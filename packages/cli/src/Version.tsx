@@ -1,7 +1,7 @@
 import React from 'react';
 import path from 'path';
 import fs from 'fs';
-import { Text } from 'ink';
+import { Box, Text, Color } from 'ink';
 
 const pkg = JSON.parse(
   fs.readFileSync(
@@ -13,14 +13,31 @@ const pkg = JSON.parse(
   ),
 );
 
+const data = [
+  ['CLI', pkg.name],
+  ['Version', pkg.version],
+];
+const largestLength = data.reduce(
+  (prev, [k]) => (
+    prev < k.length
+      ? k.length
+      : prev
+  ), 0,
+);
+
 export const Version = () => (
   <>
-    <Text>
-      {`CLI (${pkg.name})`}
-    </Text>
-    <Text>
-      {`Version: ${pkg.version}`}
-    </Text>
+    {data.map(([name, value]) => (
+      <Box key={name}>
+        <Color blue>
+          {name}
+          {new Array(largestLength - name.length + 1).fill(' ').join('')}
+        </Color>
+        <Text>
+          {`: ${value}`}
+        </Text>
+      </Box>
+    ))}
     <Text>   </Text>
   </>
 );

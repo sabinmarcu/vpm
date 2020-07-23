@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "paths": {
+      "type": "object",
+      "properties": {
+        "vim": { "type": "string" }
+      },
+      "required": ["vim"]
+    },
+    "github": {
+      "type": "object",
+      "properties": {
+        "token": { "type": "string" },
+        "gist": { "type": "string" }
+      },
+      "required": ["token"]
+    }
+  },
+  "required": ["paths"]
+}

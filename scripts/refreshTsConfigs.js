@@ -1,6 +1,7 @@
 const { parse } = require('./parse');
 const path = require('path');
 const fs = require('fs');
+const glob = require('glob');
 const { readJSON, log } = require('./utils');
 
 const ROOT = path.resolve(__dirname, '../');
@@ -65,11 +66,21 @@ const refreshTsConfigs = async (
     )
   );
   const tsConfigPath = path.resolve(modulePath, 'tsconfig.json');
+  const typesPath = path.resolve(modulePath, 'types');
+  const include = []
+  if (fs.existsSync(typesPath) && fs.statSync(typesPath).isDirectory()) {
+    glob.sync(`${typesPath}/**/*.d.ts`)
+      .forEach(file => include.push(path.relative(modulePath, file)));
+  }
   fs.writeFileSync(
     tsConfigPath,
     JSON.stringify({
-      extends: path.relative(modulePath, baseTsConfig),
       ...template,
+      extends: path.relative(modulePath, baseTsConfig),
+      include: [
+        ...template.include,
+        ...include.filter(Boolean),
+      ],
       references: paths.map(it => ({ path: it }))
     })
   );
@@ -79,5 +90,9 @@ module.exports = refreshTsConfigs;
 module.exports.refresh = refreshTsConfigs;
 
 if (!module.parent) {
-  refreshTsConfigs();
+  if (process.argv[2]) {
+    refreshTsConfigs(process.argv[2]);
+  } else {
+    refreshTsConfigs();
+  }
 }
